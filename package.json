@@ -1,5 +1,5 @@
 {
-  "name": "restify-echo-server",
+  "name": "restify-echo",
   "version": "1.0.0",
   "description": "A simple restify echo server for tests",
   "main": "server.js",

@@ -1,8 +1,11 @@
 {
   "name": "restify-echo-server",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "A simple restify echo server for tests",
   "main": "server.js",
+  "bin" : { 
+	"restify-echo" : "server.js" 
+  },
   "private": false,
   "dependencies": {
     "moment": "^2.9.0",

@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var restify = require('restify');
 var moment = require('moment');
 var url = require('url');
@@ -47,10 +49,10 @@ function echo(req, res, next) {
   return next();
 }
 
-server.get('/echo/(.*)', echo);
-server.post('/echo/(.*)', echo);
-server.put('/echo/(.*)', echo);
-server.del('/echo/(.*)', echo);
+server.get('/(.*)', echo);
+server.post('/(.*)', echo);
+server.put('/(.*)', echo);
+server.del('/(.*)', echo);
 
 server.listen(process.env.PORT || 3000, function() {
   console.log('%s listening at %s', server.name, server.url);

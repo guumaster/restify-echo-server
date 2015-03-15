@@ -48,7 +48,6 @@ Once you've started the server. Send requests to `http://localhost:3000/any/path
 
 ## TODO
 
-* Bind to a single hostname
 * Change parameters with CLI args instead of env
 * Allow also a secure server
 * throw in some tests

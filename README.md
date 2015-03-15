@@ -43,7 +43,8 @@ Once you've started the server. Send requests to `http://localhost:3000/any/path
 * `delay` amount of milliseconds to delay the response.
 * `throw` type of restify error to throw. (ex: BadRequest, InternalError, etc)
 * `msg` when `throw` parameter is present, the error message to use.
-
+* `json` send the response body you want to receive in the response.
+* `meta` boolean to get a full response or only the body payload. Defaults to `true`.
 
 ## TODO
 

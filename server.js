@@ -42,7 +42,7 @@ function echo(req, res, next) {
   req.echo = {
     statusCode: statusCode,
     delay: delay,
-    body: {
+    response: {
       ip: req.headers["x-forwarded-for"] || req.connection.remoteAddress,
       method: req.method,
       url: url.parse(fullUrl),
@@ -57,6 +57,18 @@ function echo(req, res, next) {
       }
     }
   };
+
+
+  if (req.query.json) {
+    try {
+      req.echo.response.body = JSON.parse(req.query.json);
+    } catch (e) {}
+  }
+
+  req.query.meta = !(req.query.meta === 'false');
+
+  req.echo.response = req.query.meta ? req.echo.response : req.echo.response.body;
+
 
   if (req.query.throw) {
     err = restify.errors[req.query.throw + 'Error'] || Error;
@@ -75,8 +87,8 @@ function deferedResponse(err, req, res, next) {
         req.log.error(err, 'RESTIFY-ERROR');
         return next(err);
       }
-      req.log.info({echo: req.echo.body}, 'RESTIFY-ECHO');
-      res.send(req.echo.statusCode, req.echo.body);
+      req.log.info({echo: req.echo.response}, 'RESTIFY-ECHO');
+      res.send(req.echo.statusCode, req.echo.response);
     }, req.echo.delay);
 
   }
@@ -87,7 +99,7 @@ function deferedResponse(err, req, res, next) {
   }
 
   req.log.info(err, 'RESTIFY-ECHO');
-  res.send(req.echo.statusCode, req.echo.body);
+  res.send(req.echo.statusCode, req.echo.response);
   return next();
 }
 

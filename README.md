@@ -41,6 +41,8 @@ Once you've started the server. Send requests to `http://localhost:3000/any/path
 
 * `statusCode` header status code to set in the response.
 * `delay` amount of milliseconds to delay the response.
+* `throw` type of restify error to throw. (ex: BadRequest, InternalError, etc)
+* `msg` when `throw` parameter is present, the error message to use.
 
 
 ## TODO

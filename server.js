@@ -21,6 +21,8 @@ var server = restify.createServer({
 
 server.pre(restify.pre.sanitizePath());
 server.pre(restify.pre.userAgentConnection());
+server.use(restify.acceptParser(server.acceptable));
+server.use(restify.gzipResponse());
 server.use(restify.CORS());
 server.use(restify.queryParser({mapParams: false}));
 server.use(restify.bodyParser({mapParams: false}));
@@ -98,7 +100,7 @@ function deferedResponse(err, req, res, next) {
     return next(err);
   }
 
-  req.log.info(err, 'RESTIFY-ECHO');
+  req.log.info({echo: req.echo.response}, 'RESTIFY-ECHO');
   res.send(req.echo.statusCode, req.echo.response);
   return next();
 }

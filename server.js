@@ -18,7 +18,7 @@ var startDate = Date.now();
 
 function echo(req, res, next) {
 
-  var statusCode = parseInt(req.query.status, 10) || 200;
+  var statusCode = parseInt(req.query.statusCode, 10) || 200;
   var fullUrl = (req.isSecure()) ? 'https' : 'http' + '://' + req.headers.host + req.url;
   var delay = parseInt(req.query.delay, 10) || 0;
 

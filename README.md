@@ -54,7 +54,10 @@ $> ./node_modules/.bin/restify-echo
 
 ### Ngrok support
 
+[Ngrok](https://ngrok.com) is a wonderful tool during development. It provides you a public url with a tunnel directly to your machine, so you can share active development with anyone. 
+
 If you use `ngrok` options it would also start a server on port 4040 where you can inspect all request made through the public url. By default `ngrok` will give you a random subdomain name, you can only change it if you signup and get an `authtoken` (free).
+
 
 ### Config file
 
@@ -62,29 +65,30 @@ You can use a custom config file to setup your echo server. Check the `config_ex
 
 ```
 // my_config.js file
-        
-        var custom_name = 'my-echo-server';
-        
-        module.exports = {
-          name: custom_name,
-          port: 5000,
-          bunyan: {
-            name: custom_name,
-            stream: process.stdout,
-            level: 'info'
-          },
-          ngrok: {
-            enabled: false,
-            authtoken: '<your-ngrok-authtoken>',
-            subdomain: custom_name
-          }
-        };
+
+var custom_name = 'my-echo-server';
+
+module.exports = {
+  name: custom_name,
+  port: 5000,
+  bunyan: {
+    name: custom_name,
+    stream: process.stdout,
+    level: 'info'
+  },
+  ngrok: {
+    enabled: false,
+    authtoken: '<your-ngrok-authtoken>',
+    subdomain: custom_name
+  }
+};
 
 ```
 And use it on execution:
 
 ```
 $>  restify-echo -c my_config.js
+```
 
 
 ## TODO

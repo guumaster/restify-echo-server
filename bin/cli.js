@@ -1,8 +1,14 @@
 #!/usr/bin/env node
 
+var config = require('../lib/config');
+
 var argv = require('yargs')
   .usage('Description:\nStarts a restify-echo server.\n\nUsage: \n\trestify-echo [OPTIONS]')
   .example('restify-echo -p 3000', 'starts the server in port 3000')
+
+  .alias('c', 'config')
+  .describe('c', 'config file')
+  .default('c', false)
 
   .alias('n', 'name')
   .describe('n', 'server name')
@@ -11,9 +17,8 @@ var argv = require('yargs')
   .describe('p', 'port to listen')
 
 /** ngrok tunnel options */
-  .demand('ngrok')
-  .describe('ngrok', 'start an ngrok tunnel')
-  .default('ngrok', false)
+  .alias('ng', 'ngrok')
+  .describe('ng', 'start an ngrok tunnel')
 
   .alias('s', 'subdomain')
   .describe('s', 'ngrok subdomain (only if you provide a token)')
@@ -24,9 +29,8 @@ var argv = require('yargs')
   .help('h')
   .alias('h', 'help')
 
-  //.epilog('copyright 2015')
-
   .argv;
+
 
 var server = require('../lib/server')(argv);
 

@@ -4,6 +4,8 @@ A simple echo server made with restify to serve every url you request. It catche
 
 It has a simple [ngrok tunnels](https://ngrok.com) support built-in.
 
+[![NPM](https://nodei.co/npm/restify-echo.png)](https://npmjs.org/package/restify-echo)
+
 ## Installation
 
 ```
